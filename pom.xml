@@ -159,6 +159,28 @@
 
     <build>
         <plugins>
+	    <plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>cobertura-maven-plugin</artifactId>
+  <version>2.7</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>instrument</goal>
+        <goal>check</goal>
+      </goals>
+      <phase>prepare-package</phase>  <!-- Ensures Cobertura runs before the packaging phase -->
+    </execution>
+  </executions>
+  <configuration>
+    <formats>
+      <format>xml</format>  <!-- This tells Cobertura to generate the XML report -->
+    </formats>
+    <outputDirectory>${project.build.directory}/cobertura</outputDirectory>  <!-- Ensure this is set to 'target/cobertura' -->
+  </configuration>
+</plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -167,6 +189,11 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+	    <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-war-plugin</artifactId>
+            	<version>3.3.2</version>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -199,6 +226,11 @@
 	  
     <reporting>
     <plugins>
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-site-plugin</artifactId>
+      <version>3.9.1</version>
+    </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
@@ -417,17 +449,6 @@
             </build>
             <reporting>
                 <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>cobertura-maven-plugin</artifactId>
-                        <version>${cobertura.version}</version>
-                        <configuration>
-                            <formats>
-                                <format>html</format>
-                                <format>xml</format>
-                            </formats>
-                        </configuration>
-                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
