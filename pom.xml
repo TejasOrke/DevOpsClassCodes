@@ -487,9 +487,23 @@
                         <artifactId>maven-jxr-plugin</artifactId>
                         <version>2.1</version>
                     </plugin>
+			<plugin>
+    <groupId>com.vaadin</groupId>
+    <artifactId>vaadin-maven-plugin</artifactId>
+    <version>${vaadin.plugin.version}</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>compile</goal>
+                <goal>update-widgetset</goal>
+                <goal>update-theme</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
                 </plugins>
             </reporting>
         </profile>
     </profiles>
-
 </project>
