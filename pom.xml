@@ -191,7 +191,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
+		<plugin>
+			
         </plugins>
 		<finalName>addressbook</finalName>
     </build>
@@ -219,6 +220,14 @@
             <id>metrics</id>
             <build>
                 <plugins>
+			<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.2</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
                     <!-- CHECKSTYLE -->
                     <!--<plugin>-->
                         <!--<artifactId>maven-checkstyle-plugin</artifactId>-->
